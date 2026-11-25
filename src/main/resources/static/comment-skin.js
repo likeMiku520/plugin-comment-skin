@@ -137,6 +137,12 @@
     .comment-next-comments-tabs button:hover {
       color: var(--cc-name, #354252) !important;
     }
+    /* While the list reloads the widget disables all three pills, and its
+       opacity: .62 makes the inactive labels flash to a disabled grey. */
+    .comment-next-comments-tabs button:disabled {
+      opacity: 1 !important;
+      cursor: pointer !important;
+    }
     .comment-next-comments-tabs button.comment-next-comments-tab-active,
     .comment-next-comments-tabs button[aria-pressed="true"] {
       background: var(--cc-surface, #fff) !important;
