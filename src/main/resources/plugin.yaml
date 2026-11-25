@@ -1,0 +1,19 @@
+apiVersion: plugin.halo.run/v1alpha1
+kind: Plugin
+metadata:
+  name: plugin-comment-skin
+spec:
+  enabled: true
+  requires: ">=2.27.0"
+  author:
+    name: fufu大王
+    website: https://blog.fufu520.cn
+  logo: https://blog.fufu520.cn/upload/fufu_touming.webp
+  homepage: https://github.com/likeMiku520/plugin-comment-skin
+  repo: https://github.com/likeMiku520/plugin-comment-skin
+  issues: https://github.com/likeMiku520/plugin-comment-skin/issues
+  displayName: "评论组件 Next 皮肤"
+  description: "为「评论组件 Next」换上青碧色外观：分页、排序切换、评论框与表情面板统一成 #39C5BB 主题色。"
+  license:
+    - name: "GPL-3.0"
+      url: "https://www.gnu.org/licenses/gpl-3.0.html"

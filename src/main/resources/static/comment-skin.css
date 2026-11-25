@@ -1,0 +1,92 @@
+/*
+ * Comment Next skin - host-level custom properties.
+ *
+ * Declared on the custom element itself: the widget renders into a shadow root,
+ * and custom properties inherit across that boundary.
+ */
+
+comment-widget,
+comment-next {
+    --comment-next-style-light-accent: #39c5bb;
+    --comment-next-style-dark-accent: #4dd8ce;
+    --comment-next-style-light-accent-tint: #e6f8f7;
+    --comment-next-style-dark-accent-tint: #10302e;
+    --comment-next-primary-color: #39c5bb;
+    --comment-next-primary-hover-color: #2fb3aa;
+    --comment-next-focus-border-color: #39c5bb;
+    --halo-cw-primary-1-color: #39c5bb;
+    --halo-comment-widget-component-form-button-submit-bg-color: #39c5bb;
+    --comment-next-pill-active-bg-color: #e6f8f7;
+    --comment-next-box-bg: #ffffff;
+    --comment-next-field-border-color: #e6eaf0;
+    --comment-next-border-color: #e6eaf0;
+    --comment-next-border-subtle-color: #eef2f6;
+    --comment-next-style-radius: 14px;
+    --comment-next-text-color: #2d3748;
+    --comment-next-muted-color: #8a949f;
+    --comment-next-placeholder-color: #a8b1bd;
+    --comment-next-style-light-ink: #ffffff;
+    --comment-next-style-dark-ink: #ffffff;
+    --comment-next-composer-action-ink: #ffffff;
+    --comment-next-editor-min-height: 7rem;
+    --comment-next-editor-padding: 14px 16px 10px;
+    --comment-next-font-size: 14.5px;
+    --comment-next-pill-bg-color: #eef3f5;
+    --comment-next-control-hover-bg-color: #e7edf0;
+
+    --cc-surface: #ffffff;
+    --cc-surface-soft: #f4f6f8;
+    --cc-border: #e3e8ee;
+    --cc-border-soft: #edf0f4;
+    --cc-text: #27313f;
+    --cc-text-secondary: #465160;
+    --cc-name: #354252;
+    --cc-muted: #8993a0;
+    --cc-placeholder: #a0aab5;
+    --cc-hover-bg: #f4f6f8;
+    --cc-pin: #39c5bb;
+    --cc-pin-hover: #2fb3aa;
+    --cc-pin-soft: #e6f8f7;
+    --cc-pin-border: #a7e3df;
+    --cc-pin-ink: #ffffff;
+    --cc-pin-shadow: rgba(57, 197, 187, .28);
+    --cc-avatar-ring: rgba(15, 23, 42, .05);
+    --cc-shadow-soft: rgba(15, 23, 42, .08);
+    --cc-shadow-dialog: rgba(15, 23, 42, .2);
+}
+
+html.dark comment-widget,
+html.dark comment-next,
+html[data-color-scheme="dark"] comment-widget,
+html[data-color-scheme="dark"] comment-next,
+[data-theme="dark"] comment-widget,
+[data-theme="dark"] comment-next {
+    --comment-next-box-bg: #1b2028;
+    --comment-next-field-border-color: #2b313b;
+    --comment-next-border-color: #2b313b;
+    --comment-next-border-subtle-color: #242932;
+    --comment-next-text-color: #e6edf3;
+    --comment-next-muted-color: #8b949e;
+    --comment-next-placeholder-color: #6b7683;
+    --comment-next-control-hover-bg-color: #252b35;
+    --comment-next-pill-bg-color: #252b35;
+
+    --cc-surface: #1b2028;
+    --cc-surface-soft: #222832;
+    --cc-border: #303844;
+    --cc-border-soft: #282f39;
+    --cc-text: #e6edf3;
+    --cc-text-secondary: #c5ced8;
+    --cc-name: #d6dee7;
+    --cc-muted: #8b949e;
+    --cc-placeholder: #6b7683;
+    --cc-hover-bg: #252b35;
+    --cc-pin: #4dd8ce;
+    --cc-pin-hover: #5de5dc;
+    --cc-pin-soft: #10302e;
+    --cc-pin-border: #2f6b67;
+    --cc-pin-ink: #0b1514;
+    --cc-pin-shadow: rgba(77, 216, 206, .24);
+    --cc-avatar-ring: rgba(233, 237, 242, .08);
+    --cc-shadow-soft: rgba(0, 0, 0, .4);
+}
