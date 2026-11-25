@@ -130,7 +130,9 @@
       font-weight: 500 !important;
       white-space: nowrap !important;
       cursor: pointer !important;
-      transition: background .16s ease, color .16s ease, box-shadow .16s ease !important;
+      /* The active pill is solid white; cross-fading it makes both pills look
+         half-lit for a frame when the sort changes. */
+      transition: none !important;
     }
     .comment-next-comments-tabs button:hover {
       color: var(--cc-name, #354252) !important;
@@ -743,7 +745,7 @@
       }
       .comment-next-emote-pagination {
         min-height: 27px !important;
-        margin-top: 2px !important;
+        margin-top: auto !important;
         padding-top: 2px !important;
       }
       .comment-next-emote-pagination button {
@@ -892,9 +894,18 @@
       pointer-events: none !important;
     }
 
-    /* The content itself scrolls, so pagination stays in the document flow
-       after the complete emoji grid and appears naturally at the bottom. */
+    /* Only the grid scrolls. The pager keeps its place at the bottom of the
+       content column, so a page holding one or two rows cannot pull it up. */
     .comment-next-emote-content {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+      overscroll-behavior: contain !important;
+    }
+    .comment-next-emote-grid,
+    .comment-next-emote-grid-image {
+      height: auto !important;
+      max-height: none !important;
       flex: 1 1 auto !important;
       min-height: 0 !important;
       overflow-x: hidden !important;
@@ -902,23 +913,16 @@
       overscroll-behavior: contain !important;
       scrollbar-width: thin !important;
       scrollbar-color: var(--cc-border, #e3e8ee) transparent !important;
+      align-content: start !important;
     }
-    .comment-next-emote-content::-webkit-scrollbar {
+    .comment-next-emote-grid::-webkit-scrollbar,
+    .comment-next-emote-grid-image::-webkit-scrollbar {
       width: 5px !important;
     }
-    .comment-next-emote-content::-webkit-scrollbar-thumb {
+    .comment-next-emote-grid::-webkit-scrollbar-thumb,
+    .comment-next-emote-grid-image::-webkit-scrollbar-thumb {
       border-radius: 99px !important;
       background: var(--cc-border, #e3e8ee) !important;
-    }
-    .comment-next-emote-grid,
-    .comment-next-emote-grid-image {
-      height: auto !important;
-      max-height: none !important;
-      flex: 0 0 auto !important;
-      overflow: visible !important;
-      overflow-x: visible !important;
-      overflow-y: visible !important;
-      align-content: start !important;
     }
     .comment-next-emote-pagination {
       display: flex !important;
@@ -926,7 +930,7 @@
       position: static !important;
       visibility: visible !important;
       opacity: 1 !important;
-      margin-top: 4px !important;
+      margin-top: auto !important;
     }
 
     /* Category dock: one horizontal, left-aligned row; every button keeps
@@ -960,12 +964,95 @@
       max-width: none !important;
       margin: 0 !important;
     }
-    .comment-next-emote-tabs button .cc-emote-tab-thumb,
-    .comment-next-emote-tabs button img {
-      display: none !important;
-    }
     .comment-next-emote-tabs button > span {
       min-width: 0 !important;
+    }
+
+    /* Identity dialog: the component asks for the composer tokens, which are
+       only declared inside the composer itself, so it fell back to square
+       corners and borderless buttons. The host now supplies those tokens and
+       these rules pin the chrome to the composer input area. */
+    .comment-next-identity-dialog {
+      border: 1px solid var(--cc-border, #e3e8ee) !important;
+      border-radius: 15px !important;
+      background: var(--cc-surface, #fff) !important;
+      box-shadow: 0 14px 38px rgba(20, 32, 48, .17), 0 2px 7px rgba(20, 32, 48, .06) !important;
+    }
+    .comment-next-identity-header h2 {
+      font-size: 15px !important;
+      font-weight: 650 !important;
+    }
+    .comment-next-identity-close {
+      border-radius: 9px !important;
+      color: var(--cc-muted, #8993a0) !important;
+    }
+    .comment-next-identity-close:hover {
+      background: var(--cc-surface-soft, #f4f6f8) !important;
+      color: var(--cc-name, #354252) !important;
+    }
+    .comment-next-identity-choices {
+      border: 1px solid var(--cc-border-soft, #edf0f4) !important;
+      border-radius: 12px !important;
+      overflow: hidden !important;
+    }
+    .comment-next-identity-choice {
+      border-radius: 0 !important;
+    }
+    .comment-next-identity-choice:hover {
+      background: var(--cc-surface-soft, #f4f6f8) !important;
+    }
+    .comment-next-identity-choice-icon {
+      color: var(--cc-pin, #39c5bb) !important;
+    }
+    .comment-next-identity-choice + .comment-next-identity-choice {
+      border-top-color: var(--cc-border-soft, #edf0f4) !important;
+    }
+    .comment-next-identity-confirm {
+      min-height: 34px !important;
+      padding: 0 14px !important;
+      border-radius: 9px !important;
+      background: var(--cc-pin, #39c5bb) !important;
+      color: var(--cc-pin-ink, #fff) !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      box-shadow: 0 4px 12px -7px var(--cc-pin-shadow, rgba(57, 197, 187, .35)) !important;
+    }
+    .comment-next-identity-confirm:hover {
+      background: var(--cc-pin-hover, #2fb3aa) !important;
+    }
+    .comment-next-identity-back {
+      border-radius: 9px !important;
+      color: var(--cc-muted, #8993a0) !important;
+    }
+    .comment-next-identity-back:hover {
+      background: var(--cc-surface-soft, #f4f6f8) !important;
+      color: var(--cc-pin-hover, #2fb3aa) !important;
+    }
+    .comment-next-identity-form-actions {
+      border-top: 1px solid var(--cc-border-soft, #edf0f4) !important;
+    }
+    .comment-next-identity-description {
+      color: var(--cc-muted, #8993a0) !important;
+    }
+    .comment-next-account-fields {
+      gap: 10px !important;
+    }
+    .comment-next-account-legend {
+      color: var(--cc-text-secondary, #465160) !important;
+      font-size: 12.5px !important;
+      font-weight: 600 !important;
+    }
+    .comment-next-field input {
+      border: 1px solid var(--cc-border, #e3e8ee) !important;
+      border-radius: 10px !important;
+      background: var(--cc-surface, #fff) !important;
+      color: var(--cc-text, #27313f) !important;
+      transition: border-color .16s ease, box-shadow .16s ease !important;
+    }
+    .comment-next-field input:focus {
+      border-color: var(--cc-pin, #39c5bb) !important;
+      outline: none !important;
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--cc-pin, #39c5bb) 10%, transparent) !important;
     }
     @media (max-width: 780px) {
       .comment-next-emote-tabs {
@@ -976,14 +1063,175 @@
         padding-inline: 2px !important;
       }
       .comment-next-emote-content {
-        overflow-y: auto !important;
+        overflow-y: hidden !important;
       }
     }
 `;
 
+  var EMOTE_PACKS_API = '/apis/api.commentnext.xhhao.com/v1alpha1/emotes';
+  var CONFIG_API = '/apis/api.commentnext.xhhao.com/v1alpha1/config';
+  var EMOTE_PAGE_SIZE = 30;
+  var tabThumbs;
+  var tabThumbsRequest;
+
+  /* The picker takes its page size from the comment plugin config, which accepts
+     anything up to 100. Rewrite that single field in the config response so a
+     page never holds more than 30 entries; the rest of the payload is untouched. */
+  function patchEmotePageSize() {
+    if (!window.fetch || window.fetch.__commentSkinPatched) {
+      return;
+    }
+    var nativeFetch = window.fetch;
+    var patched = function (input, init) {
+      var url = typeof input === 'string' ? input : (input && input.url) || '';
+      var pending = nativeFetch.apply(this, arguments);
+      if (url.indexOf(CONFIG_API) === -1) {
+        return pending;
+      }
+      return pending.then(function (response) {
+        if (!response || !response.ok) {
+          return response;
+        }
+        return response.clone().json().then(function (data) {
+          if (!data || !data.emote) {
+            return response;
+          }
+          data.emote.pageSize = EMOTE_PAGE_SIZE;
+          var headers = new Headers(response.headers);
+          headers.delete('content-length');
+          return new Response(JSON.stringify(data), {
+            status: response.status,
+            statusText: response.statusText,
+            headers: headers
+          });
+        }).catch(function () {
+          return response;
+        });
+      });
+    };
+    patched.__commentSkinPatched = true;
+    window.fetch = patched;
+  }
+
+  function firstImageSource(raw) {
+    if (typeof raw !== 'string') {
+      return '';
+    }
+    var match = raw.match(/src=["']([^"']+)["']/i);
+    if (!match) {
+      return '';
+    }
+    return match[1].replace(/&amp;/g, '&');
+  }
+
+  /* Category thumbnails come from the first entry of each pack, read from the
+     same JSON the picker already loads. */
+  function loadTabThumbs() {
+    if (tabThumbs) {
+      return Promise.resolve(tabThumbs);
+    }
+    if (tabThumbsRequest) {
+      return tabThumbsRequest;
+    }
+    tabThumbsRequest = window.fetch(EMOTE_PACKS_API, {
+      credentials: 'include',
+      headers: { Accept: 'application/json' }
+    }).then(function (response) {
+      return response.ok ? response.json() : null;
+    }).then(function (data) {
+      var map = new Map();
+      if (!data || typeof data !== 'object') {
+        return map;
+      }
+      Object.keys(data).forEach(function (name) {
+        var pack = data[name];
+        var items = pack && pack.container;
+        if (!items || !items.length) {
+          return;
+        }
+        for (var i = 0; i < items.length; i++) {
+          var item = items[i] || {};
+          var src = firstImageSource(item.icon || item.src || item.value);
+          if (src) {
+            map.set(name, src);
+            return;
+          }
+        }
+      });
+      return map;
+    }).catch(function () {
+      return new Map();
+    }).then(function (map) {
+      tabThumbs = map || new Map();
+      document.querySelectorAll(HOST_SELECTOR).forEach(function (host) {
+        decorateTabs(host.shadowRoot);
+      });
+      return tabThumbs;
+    });
+    return tabThumbsRequest;
+  }
+
+  function decorateTabs(root) {
+    if (!root) {
+      return;
+    }
+    var buttons = root.querySelectorAll('.comment-next-emote-tabs button');
+    if (!buttons.length) {
+      return;
+    }
+    if (!tabThumbs) {
+      loadTabThumbs();
+      return;
+    }
+    for (var i = 0; i < buttons.length; i++) {
+      var button = buttons[i];
+      if (button.querySelector('.cc-emote-tab-thumb')) {
+        continue;
+      }
+      var label = button.querySelector('span');
+      var name = (label ? label.textContent : button.textContent).trim();
+      if (!name || name === '最近') {
+        continue;
+      }
+      var src = tabThumbs.get(name);
+      if (!src) {
+        continue;
+      }
+      var thumb = document.createElement('img');
+      thumb.className = 'cc-emote-tab-thumb';
+      thumb.src = src;
+      thumb.alt = '';
+      thumb.loading = 'lazy';
+      thumb.decoding = 'async';
+      button.insertBefore(thumb, button.firstChild);
+    }
+  }
+
+  function observeRoot(root) {
+    if (!root || root.__commentSkinObserved) {
+      return;
+    }
+    root.__commentSkinObserved = true;
+    var scheduled = false;
+    new MutationObserver(function () {
+      if (scheduled) {
+        return;
+      }
+      scheduled = true;
+      window.requestAnimationFrame(function () {
+        scheduled = false;
+        decorateTabs(root);
+      });
+    }).observe(root, { childList: true, subtree: true });
+  }
+
   function inject(host) {
     var root = host && host.shadowRoot;
-    if (!root || root.__commentSkinInstalled) {
+    if (!root) {
+      return;
+    }
+    if (root.__commentSkinInstalled) {
+      decorateTabs(root);
       return;
     }
     var style = document.createElement('style');
@@ -991,6 +1239,8 @@
     style.textContent = SHADOW_CSS;
     root.appendChild(style);
     root.__commentSkinInstalled = true;
+    observeRoot(root);
+    decorateTabs(root);
   }
 
   function scan() {
@@ -1014,6 +1264,7 @@
   }
 
   function start() {
+    patchEmotePageSize();
     scan();
     var root = document.documentElement;
     if (!root) {
@@ -1067,18 +1318,44 @@
     });
   }
 
+  /* The grid is the scrolling area, so paging and category changes must start
+     at the top instead of keeping the previous offset. */
+  function resetGridScroll(root) {
+    if (!root || !root.querySelector) {
+      return;
+    }
+    var grid = root.querySelector('.comment-next-emote-grid');
+    if (!grid) {
+      return;
+    }
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () {
+        grid.scrollTop = 0;
+      });
+    });
+  }
+
   document.addEventListener('click', function (event) {
     var path = event.composedPath ? event.composedPath() : [];
     for (var i = 0; i < path.length; i++) {
       var node = path[i];
-      if (!node || !node.matches || !node.matches('.comment-next-tool-button[data-comment-next-tool="smile"]')) {
+      if (!node || !node.matches) {
         continue;
       }
-      var root = node.getRootNode && node.getRootNode();
-      scheduleDesktopEmotePanelPosition(root && root.host);
-      return;
+      if (node.matches('.comment-next-emote-pagination button, .comment-next-emote-tabs button')) {
+        var pickerRoot = node.getRootNode && node.getRootNode();
+        resetGridScroll(pickerRoot);
+        return;
+      }
+      if (node.matches('.comment-next-tool-button[data-comment-next-tool="smile"]')) {
+        var root = node.getRootNode && node.getRootNode();
+        scheduleDesktopEmotePanelPosition(root && root.host);
+        return;
+      }
     }
   }, true);
+
+  patchEmotePageSize();
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', start);

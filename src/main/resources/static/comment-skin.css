@@ -53,6 +53,21 @@ comment-next {
     --cc-avatar-ring: rgba(15, 23, 42, .05);
     --cc-shadow-soft: rgba(15, 23, 42, .08);
     --cc-shadow-dialog: rgba(15, 23, 42, .2);
+    /* Composer tokens. The identity dialog and the guest profile form read
+       these, but the composer only declares them inside its own subtree, so
+       without a host-level copy both dialogs fall back to square corners and
+       borderless controls. */
+    --comment-next-composer-theme-accent: #39c5bb;
+    --comment-next-composer-accent: #39c5bb;
+    --comment-next-composer-submit-bg: #39c5bb;
+    --comment-next-composer-tint: #e6f8f7;
+    --comment-next-composer-action-ink: #2b8f88;
+    --comment-next-composer-action-hover: #d7f2f0;
+    --comment-next-composer-background: #ffffff;
+    --comment-next-composer-rail-bg: #ffffff;
+    --comment-next-composer-rule: #edf0f4;
+    --comment-next-composer-radius: 15px;
+    --comment-next-composer-control-radius: 9px;
 }
 
 html.dark comment-widget,
@@ -90,4 +105,12 @@ html[data-color-scheme="dark"] comment-next,
     --cc-avatar-ring: rgba(233, 237, 242, .08);
     --cc-shadow-soft: rgba(0, 0, 0, .4);
     --cc-shadow-dialog: rgba(0, 0, 0, .58);
+    --comment-next-composer-accent: #4dd8ce;
+    --comment-next-composer-submit-bg: #4dd8ce;
+    --comment-next-composer-tint: #10302e;
+    --comment-next-composer-action-ink: #7fe3dc;
+    --comment-next-composer-action-hover: #173733;
+    --comment-next-composer-background: #1b2028;
+    --comment-next-composer-rail-bg: #1b2028;
+    --comment-next-composer-rule: #282f39;
 }
