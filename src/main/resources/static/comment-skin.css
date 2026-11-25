@@ -89,4 +89,5 @@ html[data-color-scheme="dark"] comment-next,
     --cc-pin-shadow: rgba(77, 216, 206, .24);
     --cc-avatar-ring: rgba(233, 237, 242, .08);
     --cc-shadow-soft: rgba(0, 0, 0, .4);
+    --cc-shadow-dialog: rgba(0, 0, 0, .58);
 }
