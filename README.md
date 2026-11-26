@@ -18,7 +18,7 @@
 
 ## 安装
 
-1. 在 Releases 下载 `plugin-comment-skin-1.1.5.jar`。
+1. 在 Releases 下载 `plugin-comment-skin-1.1.6.jar`。
 2. Halo 控制台 → 插件 → 安装，上传 JAR 后启用。
 3. 无需任何配置。
 

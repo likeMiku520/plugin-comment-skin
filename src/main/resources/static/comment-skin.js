@@ -331,7 +331,10 @@
     .comment-next-emote-search {
       box-sizing: border-box !important;
       display: flex !important;
-      flex: 1 1 auto !important;
+      /* Fixed length: the counter on the right must not resize the field. */
+      flex: 0 0 auto !important;
+      width: 320px !important;
+      max-width: calc(100% - 72px) !important;
       align-items: center !important;
       min-width: 0 !important;
       height: 36px !important;
@@ -381,6 +384,7 @@
     }
     .comment-next-emote-count {
       flex: 0 0 auto !important;
+      margin-left: auto !important;
       padding: 0 3px !important;
       border: 0 !important;
       border-radius: 0 !important;
@@ -1077,7 +1081,7 @@
       padding: 10px 12px !important;
       border: 1px solid var(--cc-border, #e3e8ee) !important;
       border-radius: var(--cc-radius-control, .625rem) !important;
-      background: color-mix(in oklab, var(--cc-surface-soft, #f0f3f5) 60%, var(--cc-surface, #fff)) !important;
+      background: transparent !important;
     }
     .comment-next-identity-profile strong {
       display: block !important;
@@ -1108,7 +1112,7 @@
       padding: 20px 16px !important;
       border: 1px dashed var(--cc-border, #e3e8ee) !important;
       border-radius: var(--cc-radius-card, 1rem) !important;
-      background: color-mix(in oklab, var(--cc-surface-soft, #f0f3f5) 55%, var(--cc-surface, #fff)) !important;
+      background: transparent !important;
       color: var(--cc-muted, #8993a0) !important;
       font-size: 13px !important;
       line-height: 1.5 !important;
