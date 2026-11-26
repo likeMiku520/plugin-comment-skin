@@ -285,12 +285,12 @@
       position: fixed !important;
       inset: auto !important;
       left: clamp(12px, var(--comment-next-emote-fixed-left, 12px), calc(100vw - min(var(--comment-next-emote-fixed-width, 520px), calc(100vw - 24px)) - 12px)) !important;
-      top: clamp(12px, var(--comment-next-emote-fixed-top, 12px), calc(100dvh - min(var(--comment-next-emote-fixed-height, 420px), calc(100dvh - 24px)) - 12px)) !important;
+      top: var(--comment-next-emote-fixed-top, 12px) !important;
       z-index: 9999 !important;
       display: flex !important;
       flex-direction: column !important;
       width: min(var(--comment-next-emote-fixed-width, 520px), calc(100vw - 24px)) !important;
-      height: min(var(--comment-next-emote-fixed-height, 420px), calc(100dvh - 24px)) !important;
+      height: auto !important;
       max-width: calc(100vw - 24px) !important;
       max-height: calc(100dvh - 24px) !important;
       min-width: 0 !important;
@@ -348,11 +348,18 @@
       background: var(--cc-surface, #fff) !important;
       box-shadow: 0 0 0 2px color-mix(in srgb, var(--cc-pin, oklch(.7 .14 250)) 11%, transparent) !important;
     }
+    /* Material Symbols "search", drawn as a mask so the glyph follows the
+       muted text colour in both schemes. */
     .comment-next-emote-search > span {
       flex: 0 0 auto !important;
-      font-size: 19px !important;
-      line-height: 1 !important;
+      width: 16px !important;
+      height: 16px !important;
+      font-size: 0 !important;
+      line-height: 0 !important;
       color: var(--cc-muted, #8993a0) !important;
+      background-color: currentColor !important;
+      -webkit-mask: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%20-960%20960%20960'%3E%3Cpath%20d%3D'M784-120%20532-372q-30%2024-69%2038t-83%2014q-109%200-184.5-75.5T120-580q0-109%2075.5-184.5T380-840q109%200%20184.5%2075.5T640-580q0%2044-14%2083t-38%2069l252%20252-56%2056ZM380-400q75%200%20127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75%200-127.5%2052.5T200-580q0%2075%2052.5%20127.5T380-400Z'%2F%3E%3C%2Fsvg%3E") center / 16px 16px no-repeat !important;
+      mask: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%20-960%20960%20960'%3E%3Cpath%20d%3D'M784-120%20532-372q-30%2024-69%2038t-83%2014q-109%200-184.5-75.5T120-580q0-109%2075.5-184.5T380-840q109%200%20184.5%2075.5T640-580q0%2044-14%2083t-38%2069l252%20252-56%2056ZM380-400q75%200%20127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75%200-127.5%2052.5T200-580q0%2075%2052.5%20127.5T380-400Z'%2F%3E%3C%2Fsvg%3E") center / 16px 16px no-repeat !important;
     }
     .comment-next-emote-search input {
       box-sizing: border-box !important;
@@ -409,12 +416,19 @@
       box-sizing: border-box !important;
       display: flex !important;
       order: 1 !important;
-      flex: 1 1 auto !important;
+      flex: 0 0 auto !important;
       flex-direction: column !important;
+      width: 100% !important;
       min-width: 0 !important;
       min-height: 0 !important;
+      /* Three whole rows, nothing clipped. */
+      height: calc(3 * 76px + 2 * 5px + 7px) !important;
       padding: 5px 3px 2px !important;
-      overflow: hidden !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      overscroll-behavior: contain !important;
+      scrollbar-width: thin !important;
+      scrollbar-color: var(--cc-border, #e3e8ee) transparent !important;
     }
     .comment-next-emote-tabs {
       box-sizing: border-box !important;
@@ -674,8 +688,8 @@
         bottom: 0 !important;
         width: 100vw !important;
         max-width: 100vw !important;
-        height: min(320px, 46dvh) !important;
-        max-height: min(320px, 46dvh) !important;
+        height: auto !important;
+        max-height: min(70dvh, calc(3 * 68px + 2 * 3px + 3px + 110px)) !important;
         min-height: 0 !important;
         margin: 0 !important;
         padding: 7px 8px calc(5px + env(safe-area-inset-bottom, 0px)) !important;
@@ -701,6 +715,7 @@
       }
       .comment-next-emote-content {
         padding: 3px 1px 0 !important;
+        height: calc(3 * 68px + 2 * 3px + 3px) !important;
       }
       .comment-next-emote-tabs {
         min-height: 43px !important;
@@ -761,12 +776,15 @@
 
     @media (max-width: 780px) and (max-height: 560px) {
       .comment-next-emote-panel {
-        height: min(285px, 58dvh) !important;
-        max-height: 60dvh !important;
+        height: auto !important;
+        max-height: min(70dvh, calc(3 * 62px + 2 * 3px + 3px + 105px)) !important;
       }
       .comment-next-emote-grid,
       .comment-next-emote-grid-image {
         grid-auto-rows: 62px !important;
+      }
+      .comment-next-emote-content {
+        height: calc(3 * 62px + 2 * 3px + 3px) !important;
       }
       .comment-next-emote-tabs {
         min-height: 39px !important;
@@ -900,25 +918,15 @@
       pointer-events: none !important;
     }
 
-    /* Only the grid scrolls. The pager keeps its place at the bottom of the
-       content column, so a page holding one or two rows cannot pull it up. */
-    .comment-next-emote-content {
-      flex: 1 1 auto !important;
-      min-height: 0 !important;
-      overflow: hidden !important;
-      overscroll-behavior: contain !important;
-    }
+    /* The content column scrolls as one piece: the grid first, then the pager,
+       so the pager is only reachable at the end of the list. */
     .comment-next-emote-grid,
     .comment-next-emote-grid-image {
       height: auto !important;
       max-height: none !important;
-      flex: 1 1 auto !important;
+      flex: 0 0 auto !important;
       min-height: 0 !important;
-      overflow-x: hidden !important;
-      overflow-y: auto !important;
-      overscroll-behavior: contain !important;
-      scrollbar-width: thin !important;
-      scrollbar-color: var(--cc-border, #e3e8ee) transparent !important;
+      overflow: visible !important;
       align-content: start !important;
     }
     .comment-next-emote-grid::-webkit-scrollbar,
@@ -936,7 +944,7 @@
       position: static !important;
       visibility: visible !important;
       opacity: 1 !important;
-      margin-top: auto !important;
+      margin-top: 6px !important;
     }
 
     /* Category dock: one horizontal, left-aligned row; every button keeps
@@ -1060,6 +1068,62 @@
       outline: none !important;
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--cc-pin, oklch(.7 .14 250)) 10%, transparent) !important;
     }
+    /* Current identity card shown when the avatar in the composer is clicked. */
+    .comment-next-identity-profile {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      margin: 4px 0 10px !important;
+      padding: 10px 12px !important;
+      border: 1px solid var(--cc-border, #e3e8ee) !important;
+      border-radius: var(--cc-radius-control, .625rem) !important;
+      background: color-mix(in oklab, var(--cc-surface-soft, #f0f3f5) 60%, var(--cc-surface, #fff)) !important;
+    }
+    .comment-next-identity-profile strong {
+      display: block !important;
+      color: var(--cc-text, #27313f) !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      line-height: 1.4 !important;
+    }
+    .comment-next-identity-profile span {
+      color: var(--cc-muted, #8993a0) !important;
+      font-size: 12px !important;
+      line-height: 1.4 !important;
+    }
+    .comment-next-identity-profile img,
+    .comment-next-identity-profile .comment-next-avatar {
+      flex: 0 0 auto !important;
+      border-radius: 999px !important;
+    }
+    /* Empty thread placeholder. */
+    .comment-next-comments-empty {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+      min-height: 124px !important;
+      margin: 6px 0 2px !important;
+      padding: 20px 16px !important;
+      border: 1px dashed var(--cc-border, #e3e8ee) !important;
+      border-radius: var(--cc-radius-card, 1rem) !important;
+      background: color-mix(in oklab, var(--cc-surface-soft, #f0f3f5) 55%, var(--cc-surface, #fff)) !important;
+      color: var(--cc-muted, #8993a0) !important;
+      font-size: 13px !important;
+      line-height: 1.5 !important;
+      text-align: center !important;
+    }
+    .comment-next-comments-empty-icon {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 34px !important;
+      height: 34px !important;
+      border-radius: 999px !important;
+      background: var(--cc-pin-soft) !important;
+      color: var(--cc-pin, oklch(.7 .14 250)) !important;
+    }
     @media (max-width: 780px) {
       .comment-next-emote-tabs {
         flex-wrap: nowrap !important;
@@ -1069,7 +1133,7 @@
         padding-inline: 2px !important;
       }
       .comment-next-emote-content {
-        overflow-y: hidden !important;
+        overflow-y: auto !important;
       }
     }
 `;
@@ -1298,19 +1362,20 @@
     var gap = 8;
     var margin = 12;
     var viewportHeight = document.documentElement.clientHeight || window.innerHeight;
+    /* The panel sizes itself from its content (three rows plus the chrome), so
+       only its position needs clamping to the viewport. */
+    var height = panelRect.height;
     var spaceAbove = Math.max(0, buttonRect.top - gap - margin);
     var spaceBelow = Math.max(0, viewportHeight - buttonRect.bottom - gap - margin);
-    var placeAbove = spaceAbove >= panelRect.height || spaceAbove >= spaceBelow;
-    var availableHeight = placeAbove ? spaceAbove : spaceBelow;
-    var finalHeight = Math.max(120, Math.min(panelRect.height, availableHeight));
+    var placeAbove = spaceAbove >= height || spaceAbove >= spaceBelow;
     var top = placeAbove
-      ? buttonRect.top - finalHeight - gap
+      ? buttonRect.top - height - gap
       : buttonRect.bottom + gap;
+    top = Math.max(margin, Math.min(top, viewportHeight - height - margin));
 
     panel.style.setProperty('--comment-next-emote-fixed-left', buttonRect.left + 'px');
     panel.style.setProperty('--comment-next-emote-fixed-top', top + 'px');
     panel.style.setProperty('--comment-next-emote-fixed-width', panelRect.width + 'px');
-    panel.style.setProperty('--comment-next-emote-fixed-height', finalHeight + 'px');
   }
 
   function scheduleDesktopEmotePanelPosition(host) {
