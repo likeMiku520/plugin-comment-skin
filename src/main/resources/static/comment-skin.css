@@ -3,114 +3,98 @@
  *
  * Declared on the custom element itself: the widget renders into a shadow root,
  * and custom properties inherit across that boundary.
+ *
+ * Every value is derived from the Ethereal theme tokens (--primary, --card-bg,
+ * --deep-text, --line-divider, --radius-large, ...), so the comment area and the
+ * emote picker follow the site hue and switch with the theme colour scheme
+ * instead of carrying a palette of their own. Fallbacks only apply when the
+ * theme tokens are missing.
  */
 
 comment-widget,
 comment-next {
-    --comment-next-style-light-accent: #39c5bb;
-    --comment-next-style-dark-accent: #4dd8ce;
-    --comment-next-style-light-accent-tint: #e6f8f7;
-    --comment-next-style-dark-accent-tint: #10302e;
-    --comment-next-primary-color: #39c5bb;
-    --comment-next-primary-hover-color: #2fb3aa;
-    --comment-next-focus-border-color: #39c5bb;
-    --halo-cw-primary-1-color: #39c5bb;
-    --halo-comment-widget-component-form-button-submit-bg-color: #39c5bb;
-    --comment-next-pill-active-bg-color: #e6f8f7;
-    --comment-next-box-bg: #ffffff;
-    --comment-next-field-border-color: #e6eaf0;
-    --comment-next-border-color: #e6eaf0;
-    --comment-next-border-subtle-color: #eef2f6;
-    --comment-next-style-radius: 14px;
-    --comment-next-text-color: #2d3748;
-    --comment-next-muted-color: #8a949f;
-    --comment-next-placeholder-color: #a8b1bd;
-    --comment-next-style-light-ink: #ffffff;
-    --comment-next-style-dark-ink: #ffffff;
-    --comment-next-composer-action-ink: #ffffff;
+    /* Surfaces */
+    --cc-surface: var(--card-bg, #fff);
+    --cc-panel: var(--float-panel-bg, var(--card-bg, #fff));
+    --cc-surface-soft: var(--btn-regular-bg, #f0f3f5);
+    --cc-surface-soft-hover: var(--btn-regular-bg-hover, #e6eaee);
+    --cc-hover-bg: var(--btn-card-bg-hover, #f6f7f9);
+
+    /* Lines and text */
+    --cc-border: var(--line-divider, rgb(0 0 0 / .08));
+    --cc-border-soft: color-mix(in oklab, var(--deep-text, #27313f) 6%, transparent);
+    --cc-text: var(--deep-text, #27313f);
+    --cc-text-secondary: color-mix(in oklab, var(--deep-text, #27313f) 78%, transparent);
+    --cc-name: color-mix(in oklab, var(--deep-text, #27313f) 90%, transparent);
+    --cc-muted: color-mix(in oklab, var(--deep-text, #27313f) 55%, transparent);
+    --cc-placeholder: color-mix(in oklab, var(--deep-text, #27313f) 38%, transparent);
+
+    /* Accent, always the theme primary */
+    --cc-pin: var(--primary, oklch(.7 .14 250));
+    --cc-pin-hover: color-mix(in oklab, var(--primary, oklch(.7 .14 250)) 85%, var(--deep-text, #000));
+    --cc-pin-soft: color-mix(in oklab, var(--primary, oklch(.7 .14 250)) 10%, transparent);
+    --cc-pin-track: color-mix(in oklab, var(--primary, oklch(.7 .14 250)) 7%, transparent);
+    --cc-pin-border: color-mix(in oklab, var(--primary, oklch(.7 .14 250)) 32%, transparent);
+    --cc-pin-ink: #fff;
+    --cc-pin-shadow: color-mix(in oklab, var(--primary, oklch(.7 .14 250)) 30%, transparent);
+
+    /* Shape and depth */
+    --cc-avatar-ring: var(--line-divider, rgb(0 0 0 / .06));
+    --cc-shadow-soft: rgb(0 0 0 / .06);
+    --cc-shadow-card: 0 1px 2px rgb(0 0 0 / .05);
+    --cc-shadow-panel: 0 12px 32px rgb(0 0 0 / .13), 0 2px 6px rgb(0 0 0 / .05);
+    --cc-radius-card: var(--radius-large, 1rem);
+    --cc-radius-control: calc(var(--radius-large, 1rem) - .375rem);
+    --cc-radius-chip: calc(var(--radius-large, 1rem) - .5rem);
+    --cc-duration: var(--card-hover-duration, .2s);
+
+    /* Widget tokens the component reads on its own */
+    --comment-next-style-light-accent: var(--primary, oklch(.7 .14 250));
+    --comment-next-style-dark-accent: var(--primary, oklch(.7 .14 250));
+    --comment-next-style-light-accent-tint: color-mix(in oklab, var(--primary, oklch(.7 .14 250)) 10%, transparent);
+    --comment-next-style-dark-accent-tint: color-mix(in oklab, var(--primary, oklch(.7 .14 250)) 14%, transparent);
+    --comment-next-primary-color: var(--primary, oklch(.7 .14 250));
+    --comment-next-primary-hover-color: var(--cc-pin-hover);
+    --comment-next-focus-border-color: var(--primary, oklch(.7 .14 250));
+    --halo-cw-primary-1-color: var(--primary, oklch(.7 .14 250));
+    --halo-comment-widget-component-form-button-submit-bg-color: var(--primary, oklch(.7 .14 250));
+    --comment-next-pill-active-bg-color: var(--cc-pin-soft);
+    --comment-next-box-bg: var(--card-bg, #fff);
+    --comment-next-field-border-color: var(--line-divider, rgb(0 0 0 / .08));
+    --comment-next-border-color: var(--line-divider, rgb(0 0 0 / .08));
+    --comment-next-border-subtle-color: color-mix(in oklab, var(--deep-text, #27313f) 7%, transparent);
+    --comment-next-style-radius: var(--radius-large, 1rem);
+    --comment-next-text-color: var(--deep-text, #27313f);
+    --comment-next-muted-color: var(--cc-muted);
+    --comment-next-placeholder-color: var(--cc-placeholder);
+    --comment-next-style-light-ink: #fff;
+    --comment-next-style-dark-ink: #fff;
+    --comment-next-composer-action-ink: #fff;
     --comment-next-editor-min-height: 7rem;
     --comment-next-editor-padding: 14px 16px 10px;
     --comment-next-font-size: 14.5px;
-    --comment-next-pill-bg-color: #eef3f5;
-    --comment-next-control-hover-bg-color: #e7edf0;
+    --comment-next-pill-bg-color: var(--btn-regular-bg, #f0f3f5);
+    --comment-next-control-hover-bg-color: var(--btn-regular-bg-hover, #e6eaee);
 
-    --cc-surface: #ffffff;
-    --cc-surface-soft: #f4f6f8;
-    --cc-border: #e3e8ee;
-    --cc-border-soft: #edf0f4;
-    --cc-text: #27313f;
-    --cc-text-secondary: #465160;
-    --cc-name: #354252;
-    --cc-muted: #8993a0;
-    --cc-placeholder: #a0aab5;
-    --cc-hover-bg: #f4f6f8;
-    --cc-pin: #39c5bb;
-    --cc-pin-hover: #2fb3aa;
-    --cc-pin-soft: #e6f8f7;
-    --cc-pin-border: #a7e3df;
-    --cc-pin-ink: #ffffff;
-    --cc-pin-shadow: rgba(57, 197, 187, .28);
-    --cc-avatar-ring: rgba(15, 23, 42, .05);
-    --cc-shadow-soft: rgba(15, 23, 42, .08);
-    --cc-shadow-dialog: rgba(15, 23, 42, .2);
-    /* Composer tokens. The identity dialog and the guest profile form read
-       these, but the composer only declares them inside its own subtree, so
-       without a host-level copy both dialogs fall back to square corners and
-       borderless controls. */
-    --comment-next-composer-theme-accent: #39c5bb;
-    --comment-next-composer-accent: #39c5bb;
-    --comment-next-composer-submit-bg: #39c5bb;
-    --comment-next-composer-tint: #e6f8f7;
-    --comment-next-composer-action-ink: #2b8f88;
-    --comment-next-composer-action-hover: #d7f2f0;
-    --comment-next-composer-background: #ffffff;
-    --comment-next-composer-rail-bg: #ffffff;
-    --comment-next-composer-rule: #edf0f4;
-    --comment-next-composer-radius: 15px;
-    --comment-next-composer-control-radius: 9px;
+    /* Composer tokens: the identity dialog and the guest profile form read
+       these, but the composer only declares them inside its own subtree. */
+    --comment-next-composer-theme-accent: var(--primary, oklch(.7 .14 250));
+    --comment-next-composer-accent: var(--primary, oklch(.7 .14 250));
+    --comment-next-composer-submit-bg: var(--primary, oklch(.7 .14 250));
+    --comment-next-composer-tint: var(--cc-pin-soft);
+    --comment-next-composer-action-ink: var(--cc-text);
+    --comment-next-composer-action-hover: var(--btn-regular-bg-hover, #e6eaee);
+    --comment-next-composer-background: var(--card-bg, #fff);
+    --comment-next-composer-rail-bg: var(--card-bg, #fff);
+    --comment-next-composer-rule: var(--line-divider, rgb(0 0 0 / .08));
+    --comment-next-composer-radius: var(--radius-large, 1rem);
+    --comment-next-composer-control-radius: var(--cc-radius-control);
 }
 
+/* The theme paints its primary pill with dark ink on the brighter dark-mode
+   accent, so text on the accent has to follow. */
 html.dark comment-widget,
-html.dark comment-next,
-html[data-color-scheme="dark"] comment-widget,
-html[data-color-scheme="dark"] comment-next,
-[data-theme="dark"] comment-widget,
-[data-theme="dark"] comment-next {
-    --comment-next-box-bg: #1b2028;
-    --comment-next-field-border-color: #2b313b;
-    --comment-next-border-color: #2b313b;
-    --comment-next-border-subtle-color: #242932;
-    --comment-next-text-color: #e6edf3;
-    --comment-next-muted-color: #8b949e;
-    --comment-next-placeholder-color: #6b7683;
-    --comment-next-control-hover-bg-color: #252b35;
-    --comment-next-pill-bg-color: #252b35;
-
-    --cc-surface: #1b2028;
-    --cc-surface-soft: #222832;
-    --cc-border: #303844;
-    --cc-border-soft: #282f39;
-    --cc-text: #e6edf3;
-    --cc-text-secondary: #c5ced8;
-    --cc-name: #d6dee7;
-    --cc-muted: #8b949e;
-    --cc-placeholder: #6b7683;
-    --cc-hover-bg: #252b35;
-    --cc-pin: #4dd8ce;
-    --cc-pin-hover: #5de5dc;
-    --cc-pin-soft: #10302e;
-    --cc-pin-border: #2f6b67;
-    --cc-pin-ink: #0b1514;
-    --cc-pin-shadow: rgba(77, 216, 206, .24);
-    --cc-avatar-ring: rgba(233, 237, 242, .08);
-    --cc-shadow-soft: rgba(0, 0, 0, .4);
-    --cc-shadow-dialog: rgba(0, 0, 0, .58);
-    --comment-next-composer-accent: #4dd8ce;
-    --comment-next-composer-submit-bg: #4dd8ce;
-    --comment-next-composer-tint: #10302e;
-    --comment-next-composer-action-ink: #7fe3dc;
-    --comment-next-composer-action-hover: #173733;
-    --comment-next-composer-background: #1b2028;
-    --comment-next-composer-rail-bg: #1b2028;
-    --comment-next-composer-rule: #282f39;
+html.dark comment-next {
+    --cc-pin-ink: rgb(0 0 0 / .72);
+    --cc-shadow-panel: 0 12px 32px rgb(0 0 0 / .5), 0 2px 6px rgb(0 0 0 / .3);
 }

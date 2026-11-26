@@ -46,7 +46,7 @@
       padding: 0 12px !important;
       margin: 0 !important;
       border: 1px solid var(--cc-border, #e3e8ee) !important;
-      border-radius: 10px !important;
+      border-radius: var(--cc-radius-control, .625rem) !important;
       background: var(--cc-surface, #fff) !important;
       color: var(--cc-muted, #8993a0) !important;
       font-size: 13px !important;
@@ -61,9 +61,9 @@
     [class*="comment-next-pager"] a:hover,
     .comment-next-comments nav button:hover:not(:disabled):not([aria-current="page"]):not([data-active]),
     .comment-next-comments nav a:hover {
-      border-color: var(--cc-pin-border, #a7e3df) !important;
-      background: var(--cc-pin-soft, #e6f8f7) !important;
-      color: var(--cc-pin-hover, #2fb3aa) !important;
+      border-color: var(--cc-pin-border, oklch(.82 .07 250)) !important;
+      background: var(--cc-pin-soft, oklch(.95 .03 250)) !important;
+      color: var(--cc-pin-hover, oklch(.62 .13 250)) !important;
     }
     [class*="comment-next-pagination"] button:active:not(:disabled),
     [class*="comment-next-pager"] button:active:not(:disabled),
@@ -89,13 +89,13 @@
     [class*="comment-next-pager"] button[aria-selected="true"],
     .comment-next-comments nav button[aria-current="page"],
     .comment-next-comments nav button[data-active] {
-      background: var(--cc-pin, #39c5bb) !important;
+      background: var(--cc-pin, oklch(.7 .14 250)) !important;
       border-color: transparent !important;
       color: var(--cc-pin-ink, #fff) !important;
       font-weight: 600 !important;
       opacity: 1 !important;
       cursor: default !important;
-      box-shadow: 0 5px 13px -5px var(--cc-pin-shadow, rgba(57, 197, 187, .28)) !important;
+      box-shadow: 0 5px 13px -5px var(--cc-pin-shadow, oklch(.7 .14 250 / .28)) !important;
     }
 
     /* Latest / hottest / oldest switch */
@@ -112,22 +112,22 @@
     .comment-next-comments-tabs {
       display: inline-flex !important;
       align-items: center !important;
-      gap: 3px !important;
+      gap: 2px !important;
       padding: 3px !important;
-      border: 1px solid var(--cc-border-soft, #edf0f4) !important;
-      border-radius: 999px !important;
-      background: var(--cc-surface-soft, #f4f6f8) !important;
+      border: 0 !important;
+      border-radius: 14px !important;
+      background: var(--cc-pin-track, color-mix(in oklab, oklch(.7 .14 250) 7%, transparent)) !important;
     }
     .comment-next-comments-tabs button {
       box-sizing: border-box !important;
       min-height: 30px !important;
-      padding: 0 14px !important;
+      padding: 0 13px !important;
       border: 0 !important;
-      border-radius: 999px !important;
+      border-radius: var(--cc-radius-control, .625rem) !important;
       background: transparent !important;
       color: var(--cc-muted, #8993a0) !important;
-      font-size: 12.5px !important;
-      font-weight: 500 !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
       white-space: nowrap !important;
       cursor: pointer !important;
       /* The active pill is solid white; cross-fading it makes both pills look
@@ -145,10 +145,10 @@
     }
     .comment-next-comments-tabs button.comment-next-comments-tab-active,
     .comment-next-comments-tabs button[aria-pressed="true"] {
-      background: var(--cc-surface, #fff) !important;
-      color: var(--cc-pin-hover, #2fb3aa) !important;
+      background: var(--cc-pin, oklch(.7 .14 250)) !important;
+      color: var(--cc-pin-ink, #fff) !important;
       font-weight: 600 !important;
-      box-shadow: 0 1px 4px var(--cc-shadow-soft, rgba(15, 23, 42, .08)) !important;
+      box-shadow: 0 4px 12px -6px var(--cc-pin-shadow, oklch(.7 .14 250 / .28)) !important;
     }
     .comment-next-comments-count {
       color: var(--cc-placeholder, #a0aab5) !important;
@@ -165,14 +165,14 @@
     .comment-next-composer-surface {
       overflow: hidden !important;
       border: 1px solid var(--cc-border, #e3e8ee) !important;
-      border-radius: 15px !important;
+      border-radius: var(--cc-radius-card, 1rem) !important;
       background: var(--cc-surface, #fff) !important;
-      box-shadow: 0 3px 14px -9px var(--cc-shadow-soft, rgba(15, 23, 42, .12)) !important;
+      box-shadow: var(--cc-shadow-card) !important;
       transition: border-color .18s ease, box-shadow .18s ease !important;
     }
     .comment-next-composer:focus-within .comment-next-composer-surface {
-      border-color: var(--cc-pin-border, #a7e3df) !important;
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--cc-pin, #39c5bb) 10%, transparent), 0 5px 18px -10px var(--cc-shadow-soft, rgba(15, 23, 42, .12)) !important;
+      border-color: var(--cc-pin-border, oklch(.82 .07 250)) !important;
+      box-shadow: 0 0 0 3px color-mix(in oklab, var(--cc-pin, oklch(.7 .14 250)) 14%, transparent), var(--cc-shadow-card) !important;
     }
     .comment-next-composer-writing,
     .comment-next-editor-wrap {
@@ -238,7 +238,7 @@
       min-height: 34px !important;
       padding: 0 !important;
       border: 0 !important;
-      border-radius: 9px !important;
+      border-radius: var(--cc-radius-control, .625rem) !important;
       background: transparent !important;
       color: var(--cc-muted, #8993a0) !important;
       transition: color .16s ease, background .16s ease, transform .16s ease !important;
@@ -246,7 +246,7 @@
     .comment-next-composer-identity:hover,
     .comment-next-tool-button:hover {
       background: var(--cc-surface-soft, #f4f6f8) !important;
-      color: var(--cc-pin-hover, #2fb3aa) !important;
+      color: var(--cc-pin-hover, oklch(.62 .13 250)) !important;
     }
     .comment-next-tool-button:active,
     .comment-next-composer-identity:active {
@@ -262,18 +262,18 @@
       min-height: 36px !important;
       padding: 0 15px !important;
       border: 0 !important;
-      border-radius: 9px !important;
-      background: var(--cc-pin, #39c5bb) !important;
+      border-radius: var(--cc-radius-control, .625rem) !important;
+      background: var(--cc-pin, oklch(.7 .14 250)) !important;
       color: var(--cc-pin-ink, #fff) !important;
       font-size: 13px !important;
       font-weight: 600 !important;
       white-space: nowrap !important;
-      box-shadow: 0 4px 12px -7px var(--cc-pin-shadow, rgba(57, 197, 187, .35)) !important;
+      box-shadow: 0 4px 12px -7px var(--cc-pin-shadow, oklch(.7 .14 250 / .35)) !important;
       transition: background .16s ease, box-shadow .16s ease, transform .16s ease !important;
     }
     .comment-next-submit-button:hover:not(:disabled) {
-      background: var(--cc-pin-hover, #2fb3aa) !important;
-      box-shadow: 0 6px 15px -7px var(--cc-pin-shadow, rgba(57, 197, 187, .35)) !important;
+      background: var(--cc-pin-hover, oklch(.62 .13 250)) !important;
+      box-shadow: 0 6px 15px -7px var(--cc-pin-shadow, oklch(.7 .14 250 / .35)) !important;
     }
     .comment-next-submit-button:active:not(:disabled) {
       transform: translateY(1px) scale(.98) !important;
@@ -300,10 +300,10 @@
       gap: 0 !important;
       overflow: hidden !important;
       border: 1px solid var(--cc-border, #e3e8ee) !important;
-      border-radius: 15px !important;
-      background: var(--cc-surface, #fff) !important;
+      border-radius: var(--cc-radius-card, 1rem) !important;
+      background: var(--cc-panel, #fff) !important;
       color: var(--cc-text, #27313f) !important;
-      box-shadow: 0 14px 38px rgba(20, 32, 48, .17), 0 2px 7px rgba(20, 32, 48, .06) !important;
+      box-shadow: var(--cc-shadow-panel) !important;
       backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
       overscroll-behavior: contain !important;
@@ -344,9 +344,9 @@
       transition: border-color .15s ease, background .15s ease, box-shadow .15s ease !important;
     }
     .comment-next-emote-search:focus-within {
-      border-color: var(--cc-pin-border, #a7e3df) !important;
+      border-color: var(--cc-pin-border, oklch(.82 .07 250)) !important;
       background: var(--cc-surface, #fff) !important;
-      box-shadow: 0 0 0 2px color-mix(in srgb, var(--cc-pin, #39c5bb) 11%, transparent) !important;
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--cc-pin, oklch(.7 .14 250)) 11%, transparent) !important;
     }
     .comment-next-emote-search > span {
       flex: 0 0 auto !important;
@@ -455,7 +455,7 @@
       margin: 0 !important;
       padding: 0 12px !important;
       border: 1px solid transparent !important;
-      border-radius: 10px !important;
+      border-radius: var(--cc-radius-control, .625rem) !important;
       background: transparent !important;
       color: var(--cc-muted, #8993a0) !important;
       font-size: 12px !important;
@@ -473,9 +473,9 @@
     }
     .comment-next-emote-tabs button.comment-next-emote-tab-active,
     .comment-next-emote-tabs button[aria-pressed="true"] {
-      border-color: color-mix(in srgb, var(--cc-pin, #39c5bb) 20%, transparent) !important;
-      background: var(--cc-pin-soft, #e6f8f7) !important;
-      color: var(--cc-pin-hover, #2fb3aa) !important;
+      border-color: color-mix(in srgb, var(--cc-pin, oklch(.7 .14 250)) 20%, transparent) !important;
+      background: var(--cc-pin-soft, oklch(.95 .03 250)) !important;
+      color: var(--cc-pin-hover, oklch(.62 .13 250)) !important;
       font-weight: 600 !important;
       box-shadow: none !important;
     }
@@ -512,8 +512,8 @@
       font-variant-numeric: tabular-nums !important;
     }
     .comment-next-emote-tabs button[aria-pressed="true"] small {
-      background: color-mix(in srgb, var(--cc-pin, #39c5bb) 14%, transparent) !important;
-      color: var(--cc-pin-hover, #2fb3aa) !important;
+      background: color-mix(in srgb, var(--cc-pin, oklch(.7 .14 250)) 14%, transparent) !important;
+      color: var(--cc-pin-hover, oklch(.62 .13 250)) !important;
     }
 
     .comment-next-emote-grid,
@@ -598,8 +598,8 @@
       pointer-events: none !important;
     }
     .comment-next-emote-item:hover {
-      border-color: color-mix(in srgb, var(--cc-pin, #39c5bb) 24%, transparent) !important;
-      background: color-mix(in srgb, var(--cc-pin, #39c5bb) 7%, transparent) !important;
+      border-color: color-mix(in srgb, var(--cc-pin, oklch(.7 .14 250)) 24%, transparent) !important;
+      background: color-mix(in srgb, var(--cc-pin, oklch(.7 .14 250)) 7%, transparent) !important;
     }
     .comment-next-emote-item:active {
       transform: scale(.96) !important;
@@ -647,7 +647,7 @@
     }
     .comment-next-emote-pagination button:hover:not(:disabled) {
       background: var(--cc-surface-soft, #f4f6f8) !important;
-      color: var(--cc-pin-hover, #2fb3aa) !important;
+      color: var(--cc-pin-hover, oklch(.62 .13 250)) !important;
     }
     .comment-next-emote-empty {
       display: flex !important;
@@ -660,7 +660,7 @@
       font-size: 13px !important;
     }
     .comment-next-emote-panel button:focus-visible {
-      outline: 2px solid var(--cc-pin, #39c5bb) !important;
+      outline: 2px solid var(--cc-pin, oklch(.7 .14 250)) !important;
       outline-offset: 1px !important;
     }
 
@@ -682,8 +682,8 @@
         border-right: 0 !important;
         border-bottom: 0 !important;
         border-left: 0 !important;
-        border-radius: 15px 15px 0 0 !important;
-        box-shadow: 0 -8px 28px rgba(18, 28, 42, .15) !important;
+        border-radius: var(--cc-radius-card, 1rem) var(--cc-radius-card, 1rem) 0 0 !important;
+        box-shadow: var(--cc-shadow-panel) !important;
         transform-origin: center bottom !important;
         animation: none !important;
       transition: none !important;
@@ -717,7 +717,7 @@
         flex: 0 0 auto !important;
         gap: 5px !important;
         padding: 0 8px !important;
-        border-radius: 9px !important;
+        border-radius: var(--cc-radius-control, .625rem) !important;
         font-size: 11px !important;
       }
       .comment-next-emote-tabs button .cc-emote-tab-thumb {
@@ -980,16 +980,16 @@
        these rules pin the chrome to the composer input area. */
     .comment-next-identity-dialog {
       border: 1px solid var(--cc-border, #e3e8ee) !important;
-      border-radius: 15px !important;
-      background: var(--cc-surface, #fff) !important;
-      box-shadow: 0 14px 38px rgba(20, 32, 48, .17), 0 2px 7px rgba(20, 32, 48, .06) !important;
+      border-radius: var(--cc-radius-card, 1rem) !important;
+      background: var(--cc-panel, #fff) !important;
+      box-shadow: var(--cc-shadow-panel) !important;
     }
     .comment-next-identity-header h2 {
       font-size: 15px !important;
       font-weight: 650 !important;
     }
     .comment-next-identity-close {
-      border-radius: 9px !important;
+      border-radius: var(--cc-radius-control, .625rem) !important;
       color: var(--cc-muted, #8993a0) !important;
     }
     .comment-next-identity-close:hover {
@@ -998,7 +998,7 @@
     }
     .comment-next-identity-choices {
       border: 1px solid var(--cc-border-soft, #edf0f4) !important;
-      border-radius: 12px !important;
+      border-radius: calc(var(--cc-radius-card, 1rem) - .25rem) !important;
       overflow: hidden !important;
     }
     .comment-next-identity-choice {
@@ -1008,7 +1008,7 @@
       background: var(--cc-surface-soft, #f4f6f8) !important;
     }
     .comment-next-identity-choice-icon {
-      color: var(--cc-pin, #39c5bb) !important;
+      color: var(--cc-pin, oklch(.7 .14 250)) !important;
     }
     .comment-next-identity-choice + .comment-next-identity-choice {
       border-top-color: var(--cc-border-soft, #edf0f4) !important;
@@ -1016,23 +1016,23 @@
     .comment-next-identity-confirm {
       min-height: 34px !important;
       padding: 0 14px !important;
-      border-radius: 9px !important;
-      background: var(--cc-pin, #39c5bb) !important;
+      border-radius: var(--cc-radius-control, .625rem) !important;
+      background: var(--cc-pin, oklch(.7 .14 250)) !important;
       color: var(--cc-pin-ink, #fff) !important;
       font-size: 13px !important;
       font-weight: 600 !important;
-      box-shadow: 0 4px 12px -7px var(--cc-pin-shadow, rgba(57, 197, 187, .35)) !important;
+      box-shadow: 0 4px 12px -7px var(--cc-pin-shadow, oklch(.7 .14 250 / .35)) !important;
     }
     .comment-next-identity-confirm:hover {
-      background: var(--cc-pin-hover, #2fb3aa) !important;
+      background: var(--cc-pin-hover, oklch(.62 .13 250)) !important;
     }
     .comment-next-identity-back {
-      border-radius: 9px !important;
+      border-radius: var(--cc-radius-control, .625rem) !important;
       color: var(--cc-muted, #8993a0) !important;
     }
     .comment-next-identity-back:hover {
       background: var(--cc-surface-soft, #f4f6f8) !important;
-      color: var(--cc-pin-hover, #2fb3aa) !important;
+      color: var(--cc-pin-hover, oklch(.62 .13 250)) !important;
     }
     .comment-next-identity-form-actions {
       border-top: 1px solid var(--cc-border-soft, #edf0f4) !important;
@@ -1050,15 +1050,15 @@
     }
     .comment-next-field input {
       border: 1px solid var(--cc-border, #e3e8ee) !important;
-      border-radius: 10px !important;
+      border-radius: var(--cc-radius-control, .625rem) !important;
       background: var(--cc-surface, #fff) !important;
       color: var(--cc-text, #27313f) !important;
       transition: border-color .16s ease, box-shadow .16s ease !important;
     }
     .comment-next-field input:focus {
-      border-color: var(--cc-pin, #39c5bb) !important;
+      border-color: var(--cc-pin, oklch(.7 .14 250)) !important;
       outline: none !important;
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--cc-pin, #39c5bb) 10%, transparent) !important;
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--cc-pin, oklch(.7 .14 250)) 10%, transparent) !important;
     }
     @media (max-width: 780px) {
       .comment-next-emote-tabs {
